@@ -42,11 +42,38 @@
         h1, h2, h3, h4, h5, h6 {
             text-wrap: balance;
         }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 100; }
+        }
+
+        #faded {
+            animation: fade-in 3s ease-in forwards;
+        }
+
+        video {
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
-    <video autoplay control>
+    <video>
         <source src="yes.mp4" type="video/mp4">
     </video>
+    <script>
+        function checkAutoplay() {
+            const video = document.querySelector('video');
+
+            video.play().then(() => {
+                video.style.visibility = "visible";
+                video.id = "faded";
+            }).catch((error) => {
+                alert('To view this page, please allow your browser video and audio autoplay access.');
+            });
+        }
+
+        checkAutoplay();
+    </script>
 </body>
 </html>
